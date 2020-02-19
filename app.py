@@ -3,12 +3,25 @@
 
 import json
 
+from cree_sro_syllabics import syllabics2sro  # type: ignore
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
 with open("./sentences.json", "r", encoding="UTF-8") as sentfile:
-    sentences = json.load(sentfile)["sentences"]
+    syl_sentences = json.load(sentfile)["sentences"]
+
+sentences = []
+for syllabics in syl_sentences:
+    if not syllabics:
+        continue
+    sentences.append(
+        {
+            "Cans": syllabics,
+            "Latn": syllabics2sro(syllabics),
+            "Latn-x-macron": syllabics2sro(syllabics, produce_macrons=True),
+        }
+    )
 
 
 @app.route("/")

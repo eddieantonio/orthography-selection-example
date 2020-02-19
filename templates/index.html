@@ -7,7 +7,12 @@
 <body>
     <ul>
     {% for sentence in sentences %}
-        <li>{{ sentence }}</li>
+        <li><span lang="cr" data-orth
+                  data-orth-Cans="{{ sentence["Cans"] }}"
+                  data-orth-Latn="{{ sentence["Latn"] }}"
+                  data-orth-Latn-x-macron="{{ sentence["Latn-x-macron"] }}"
+            >{{ sentence["Latn"] }}</span>
+        </li>
     {% endfor %}
     </ul>
 </body>
