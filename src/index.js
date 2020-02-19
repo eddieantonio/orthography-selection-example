@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', function () {
+  let buttons = document.querySelectorAll('[data-change-orth]')
+
+  for (let button of buttons) {
+    let orth = button.dataset.changeOrth;
+    button.addEventListener('click', function () {
+      changeOrth(orth)
+    })
+  }
+})
+
 function changeOrth (which) {
   let elements = document.querySelectorAll('[data-orth]')
   console.assert(['Cans', 'Latn', 'LatnXMacron'].includes(which))
@@ -10,7 +21,3 @@ function changeOrth (which) {
     }
   }
 }
-
-setTimeout(() => changeOrth('LatnXMacron'), 1000)
-setTimeout(() => changeOrth('Cans'), 2000)
-setTimeout(() => changeOrth('Latn'), 3000)
